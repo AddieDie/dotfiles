@@ -4,7 +4,7 @@ A minimal, personal dotfiles repository containing a Neovim configuration (`init
 
 ## Overview
 
-This repository contains Addie's personal Neovim configuration and any related dotfiles kept at the repo root. The primary entrypoint is `init.lua` which configures Neovim using Lua.
+This repository contains Neovim configuration and any related dotfiles kept at the repo root. The primary entrypoint is `init.lua` which configures Neovim using Lua.
 
 Use this repository as a starting point for a lightweight, Lua-based Neovim setup. It's intentionally small and easy to adapt.
 
