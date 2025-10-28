@@ -118,16 +118,11 @@ nvim --clean
 
 ## Contributing & follow-ups
 
-This repo is primarily a personal config, but pull requests and issues are welcome. Possible improvements:
-
-- Break `init.lua` into modular `lua/` files for readability.
-- Add an install script that safely backs up existing configs and creates symlinks.
-- Add a list of recommended external tools (gcc, make, ripgrep) in the README.
+This repo is primarily a personal config, I'll not accept any pull request
 
 ## License
 
 See the `LICENSE` file for license details.
 
----
 
 
