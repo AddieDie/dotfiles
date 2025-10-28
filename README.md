@@ -1,37 +1,63 @@
 # addie-dotfiles
 
-A minimal, personal dotfiles repository containing a Neovim configuration (`init.lua`).
+Personal dotfiles tuned for a lightweight Neovim (Lua) setup and a small set of VS Code UI tweaks.
 
-## Overview
+This repo contains a single-file Neovim configuration (`init.lua`) and a `vscode-settings.json` to apply a compact editor layout. The README documents how to install, what the config includes, and where to customize it.
 
-This repository contains Neovim configuration and any related dotfiles kept at the repo root. The primary entrypoint is `init.lua` which configures Neovim using Lua.
+## What's in this repo
 
-Use this repository as a starting point for a lightweight, Lua-based Neovim setup. It's intentionally small and easy to adapt.
+- `init.lua` — main Neovim configuration written in Lua. Bootstraps `lazy.nvim` as the plugin manager and configures colors, plugins, keymaps, and a handy C compile/run shortcut.
+- `vscode-settings.json` — opinionated VS Code settings you can copy into a workspace `.vscode/settings.json` or merge into your global settings.
+- `LICENSE` — repo license (see file).
 
-## Repository structure
+## Highlights (what I added)
 
-- `init.lua` — main Neovim configuration file (entrypoint).
-- `README.md` — this document.
+- Plugin manager: lazy.nvim (auto-bootstrapped in `init.lua`). Run `:Lazy sync` to install plugins.
+- Colors: `sainnhe/everforest` is the default colorscheme (with `morhetz/gruvbox` available lazily).
+- File explorer: `nvim-tree.lua` with <leader>e toggling the tree.
+- Treesitter for syntax, LSP support (`nvim-lspconfig`), Telescope with fzf native, autopairs, and a polished statusline with `lualine`.
+- Keymaps:
+	- <leader>w — save file
+	- <leader>q — quit
+	- <D-q> — quit all (macOS Command+q mapping)
+	- <leader>e — toggle Nvim Tree
+	- <leader>f — Telescope find files
+	- <leader>g — Telescope live grep
+	- <leader>b — Telescope buffers
+	- <F5> — compile & run the current C file (builds into a `./build/` directory and runs the produced binary)
 
-If you add more config files (e.g., `lua/`, `ftplugin/`, or other dotfiles), list them here for quick reference.
+## Plugin list (from `init.lua`)
 
-## Quick install
+Core plugins currently configured:
 
-Clone this repository and use it as your Neovim configuration. Replace the target path if you prefer a different layout.
+- folke/lazy.nvim (plugin manager)
+- sainnhe/everforest (theme)
+- nvim-tree/nvim-tree.lua (file explorer)
+- nvim-tree/nvim-web-devicons (icons)
+- nvim-treesitter/nvim-treesitter (syntax/indent)
+- neovim/nvim-lspconfig (LSP)
+- windwp/nvim-autopairs (auto closing pairs)
+- nvim-telescope/telescope.nvim (fuzzy finder) + telescope-fzf-native
+- nvim-lualine/lualine.nvim (statusline)
+- morhetz/gruvbox (optional theme)
 
-1) Backup any existing Neovim config first:
+Note: `telescope-fzf-native.nvim` requires `make` to build the native extension; the config checks for `make` before attempting the build.
+
+## Quick install (recommended)
+
+1) Backup any existing Neovim config:
 
 ```bash
 mv ~/.config/nvim ~/.config/nvim.backup-$(date +%s) 2>/dev/null || true
 ```
 
-2) Clone this repo into the Neovim config path:
+2) Clone this repo into your Neovim config directory (or keep it elsewhere and symlink):
 
 ```bash
 git clone https://github.com/AddieDie/addie-dotfiles.git ~/.config/nvim
 ```
 
-Alternatively, keep the repo somewhere else and symlink the `init.lua` into `~/.config/nvim/init.lua`:
+If you prefer to keep the repo in `~/code` and symlink only the `init.lua`:
 
 ```bash
 git clone https://github.com/AddieDie/addie-dotfiles.git ~/code/addie-dotfiles
@@ -39,37 +65,69 @@ mkdir -p ~/.config/nvim
 ln -sfn ~/code/addie-dotfiles/init.lua ~/.config/nvim/init.lua
 ```
 
-3) Open Neovim and follow any plugin manager instructions to install plugins. For many setups this will be one of the following inside Neovim:
+3) Start Neovim. `init.lua` bootstraps `lazy.nvim` automatically. Once Neovim starts, run:
 
-- `:PackerSync` (packer.nvim)
-- `:Lazy` or `:Lazy sync` (lazy.nvim)
-- or the equivalent command for the plugin manager used in this config
+```vim
+:Lazy sync
+```
 
-If the config uses a plugin manager that isn't installed, install it per that manager's README before running the sync/install command.
+This installs the plugins defined in `init.lua`.
 
-## Usage
+## Using the C compile shortcut
 
-- Edit `init.lua` to customize settings, keymaps, and plugins.
-- To reload changes during a session: inside Neovim run `:luafile $MYVIMRC` or restart Neovim.
-- Keep your secrets and machine-specific settings out of this repository (use a `local.lua` or environment-specific file if needed).
+Press F5 while editing a C file. The mapping:
 
-## Customization tips
+- creates a `build/` directory in the current working directory (if it doesn't exist),
+- compiles the current buffer with `gcc` into `build/<filename>`,
+- and runs the resulting binary.
 
-- Split large configs into `lua/` modules (e.g., `lua/plugins.lua`, `lua/settings.lua`) for clarity.
-- Use `vim.opt` for options and `vim.keymap.set()` for mappings when editing `init.lua`.
-- Consider adding a `Makefile` or small install script to automate symlinks and plugin bootstrapping.
+Notes and caveats:
+- The command runs `gcc` without extra flags; modify `init.lua` if you need debug flags or linking options.
+- The build directory is created automatically and left on disk.
+
+## VS Code settings
+
+The file `vscode-settings.json` contains opinionated UI and editor settings (fonts, tabs, layout tweaks and a compact look). To use them:
+
+- For a single workspace: copy the file to `.vscode/settings.json` inside the project.
+- To merge into your user settings: open Settings (JSON) and merge the keys you like.
+
+Highlights from the settings:
+
+- JetBrains Mono, font size 14 and compact UI (minimap disabled, status bar hidden by default)
+- relative line numbers and tab size 2
+- various custom UI tweaks to simplify the look (custom styles included)
+
+## Customization
+
+- Edit `init.lua` directly to add/remove plugins or change options.
+- Consider splitting `init.lua` into `lua/` modules if the config grows (e.g. `lua/plugins.lua`, `lua/keymaps.lua`).
+- If you use a different plugin manager, adapt the plugin declarations accordingly.
 
 ## Troubleshooting
 
-- If Neovim won't start, move your `init.lua` out of the way and start with a minimal file to reproduce the issue.
-- Check `:messages` for runtime error traces.
-- If plugins fail to install, ensure your plugin manager is installed and run the manager's sync/install command in Neovim.
+- If Neovim fails to start, move `init.lua` temporarily and start with an empty config to isolate the error:
 
-## Contributing
+```bash
+mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.bak
+nvim --clean
+```
 
-This repository is primarily a personal configuration. Contributions are welcome as issues or PRs; please keep changes minimal and well-documented. If you want to suggest a new feature, open an issue first so we can discuss scope.
+- If a plugin build fails (e.g. `telescope-fzf-native`), ensure `make` is installed and re-run `:Lazy sync`.
+- If the F5 compile/run mapping doesn’t work, ensure `gcc` is installed and you are editing a `.c` file.
+
+## Contributing & follow-ups
+
+This repo is primarily a personal config, but pull requests and issues are welcome. Possible improvements:
+
+- Break `init.lua` into modular `lua/` files for readability.
+- Add an install script that safely backs up existing configs and creates symlinks.
+- Add a list of recommended external tools (gcc, make, ripgrep) in the README.
 
 ## License
 
-This repository includes a `LICENSE` file. See it for license details.
+See the `LICENSE` file for license details.
+
+---
+
 
