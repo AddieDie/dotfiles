@@ -1,92 +1,34 @@
 {
-  // Workbench settings
-  "workbench.activityBar.location": "hidden",
-  "workbench.editor.showTabs": "single",
-  "workbench.statusBar.visible": false,
-  "workbench.startupEditor": "none",
-  "workbench.tips.enabled": false,
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.tree.indent": 12,
-  "workbench.colorTheme": "Default Light+",
-
-  // Editor settings
-  "editor.minimap.enabled": false,
-  "editor.fontFamily": "JetBrains Mono",
-  "editor.fontSize": 14,
-  "editor.lineHeight": 1.4,
-  "editor.matchBrackets": "never",
-  "editor.lineNumbers": "relative",
+  "window.zoomLevel": 2,
+  "window.menuBarVisibility": "toggle",
+  
+  "editor.fontFamily": "Iosevka Nerd Font",
+  "editor.fontSize": 18,
   "editor.tabSize": 2,
-  "editor.cursorWidth": 1,
-  "editor.showFoldingControls": "never",
-  "editor.guides.indentation": false,
-  "editor.renderWhitespace": "none",
-  "editor.renderLineHighlight": "none",
-  "editor.overviewRulerBorder": false,
-  "editor.hideCursorInOverviewRuler": true,
-  "editor.cursorBlinking": "solid",
-  "editor.cursorStyle": "line",
-  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.wordWrap": "on",
+  "editor.mouseWheelZoom": true,
+
   "editor.scrollbar.verticalScrollbarSize": 0,
+  "editor.scrollbar.horizontalScrollbarSize": 8,
+  "editor.renderLineHighlight": "none",
 
-  // Explorer settings
   "explorer.compactFolders": false,
-  "explorer.confirmDragAndDrop": false,
   "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
 
-  // Suggerstions/Auto Compilotions-Config
-  "editor.quickSuggestions": {
-    "other": "off",
-    "comments": "off",
-    "strings": "off"
-},
-
+  "workbench.activityBar.location": "hidden",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.layoutControl.enabled": false,
+  "workbench.colorTheme": "Default High Contrast Light",
+  "workbench.startupEditor": "none",
+  
   "github.copilot.enable": {
     "*": false,
     "plaintext": false,
-    "markdown": false,
-    "scminput": false
+    "markdown": true,
+    "scminput": false,
+    "c": true
   },
 
-  // Window settings
-  "window.zoomLevel": 3,
-  "window.customTitleBarVisibility": "never",
-  "window.titleBarStyle": "native",
-  "window.menuBarVisibility": "toggle",
-
-  // Custom UI style for Electron
-  "custom-ui-style.electron": {
-    "titleBarStyle": "hiddenInset",
-    "trafficLightPosition": {
-      "x": 20,
-      "y": 16
-    }
-  },
-
-  // Custom UI styles (general)
-  "custom-ui-style.stylesheet": {
-    ".notification-toast": "box-shadow: none !important",
-    ".quick-input-widget.show-file-icons": "box-shadow: none !important",
-    ".quick-input-widget": "top: 25vh !important",
-    ".quick-input-list .scrollbar": "display: none",
-    ".monaco-action-bar.quick-input-inline-action-bar": "display: none",
-    ".editor-widget.find-widget": "box-shadow: none; border-radius: 4px",
-    ".quick-input-titlebar": "background: #100B15 !important",
-    ".monaco-workbench .part.editor > .content .editor-group-container > .title.title-border-bottom:after": "display: none",
-    ".monaco-scrollable-element > .shadow.top": "display: none",
-    ".sidebar .title-label": "padding: 0 !important",
-    ".sidebar": "border: none !important",
-    ".monaco-workbench .monaco-list:not(.element-focused):focus:before": "outline: none !important",
-    ".monaco-list-row.focused": "outline: none !important",
-    ".monaco-editor .scroll-decoration": "display: none",
-    ".title-actions": "display: none !important",
-    ".title.show-file-icons .label-container .monaco-icon-label.file-icon": "justify-content: center; padding: 0 !important",
-    ".title .monaco-icon-label:after": "margin-right: 0",
-    ".monaco-workbench .part.editor > .content .editor-group-container > .title > .label-container > .title-label": "padding-left: 60px",
-    ".title .monaco-icon-label.file-icon": "margin: 0 60px"
-  },
-
-  // Font settings
-  "custom-ui-style.font.sansSerif": "JetBrains Mono",
-  "breadcrumbs.enabled": false
+  "chat.commandCenter.enabled": false,
 }
