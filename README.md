@@ -119,10 +119,3 @@ nvim --clean
 ## Contributing & follow-ups
 
 This repo is primarily a personal config, I'll not accept any pull request
-
-## License
-
-See the `LICENSE` file for license details.
-
-
-
