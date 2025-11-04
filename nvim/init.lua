@@ -15,12 +15,15 @@ vim.opt.cursorline = true
 vim.opt.wrap = false
 vim.opt.scrolloff = 8
 
-vim.opt.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<D-q>", ":qa!<CR>", { noremap = true, silent = true, desc = "Quit all" })
+vim.keymap.set('n', '<leader>r', ':F1<CR>:!python3 %<CR>', { noremap = true, silent = true })
+
 
 -- Shortcut for c files | Also works for windows the shortcut is F5
 vim.keymap.set('n', '<F5>', function()
@@ -159,4 +162,3 @@ if not vim.loop.fs_stat(lazypath) then
     },
 
   })
-
