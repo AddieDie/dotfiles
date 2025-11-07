@@ -16,7 +16,6 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 8
 
 vim.o.clipboard = "unnamedplus"
--- vim.opt.clipboard = "unnamedplus"
 
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
@@ -25,24 +24,46 @@ vim.keymap.set("n", "<D-q>", ":qa!<CR>", { noremap = true, silent = true, desc =
 vim.keymap.set('n', '<leader>r', ':F1<CR>:!python3 %<CR>', { noremap = true, silent = true })
 
 
--- Shortcut for c files | Also works for windows the shortcut is F5
-vim.keymap.set('n', '<F5>', function()
-local file = vim.fn.expand('%:p')       
-local filename = vim.fn.expand('%:t:r') 
-local build_dir = vim.fn.getcwd() .. '/build'
-local output = build_dir .. '/' .. filename
+-- Python runner with split terminal
+vim.keymap.set('n', '<F6>', function()
+  local file = vim.fn.expand('%:p')
+  if vim.fn.expand('%:e') ~= 'py' then
+    print("⚠️ Not a Python file!")
+    return
+  end
+  vim.cmd('w')  -- save before running
 
--- Little caution this ll create a build file that files don't have = More storage
-if vim.fn.isdirectory(build_dir) == 0 then
-  vim.fn.mkdir(build_dir, 'p')
-  print("📁 Created build directory: " .. build_dir)
+  -- Close any previous "run" terminal if it exists
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_get_name(buf):match("term://.*python3") then
+      vim.api.nvim_buf_delete(buf, { force = true })
+    end
   end
 
+  -- Open bottom terminal split and run Python
+  vim.cmd('botright 10split | terminal python3 "' .. file .. '"')
+  vim.cmd('startinsert')
+end, { noremap = true, silent = true, desc = "Run Python file cleanly" })
+
+
+-- Shortcut for c files | Also works for windows the shortcut is F5
+-- vim.keymap.set('n', '<F5>', function()
+-- local file = vim.fn.expand('%:p')       
+-- local filename = vim.fn.expand('%:t:r') 
+-- local build_dir = vim.fn.getcwd() .. '/build'
+-- local output = build_dir .. '/' .. filename
+
+-- -- Little caution this ll create a build file that files don't have = More storage
+-- if vim.fn.isdirectory(build_dir) == 0 then
+--   vim.fn.mkdir(build_dir, 'p')
+--   print("📁 Created build directory: " .. build_dir)
+--   end
+
   
-  local cmd = string.format("gcc %s -o %s && %s", file, output, output)
-  vim.cmd('!clear')  
-  vim.cmd('!' .. cmd)
-  end, { noremap = true, silent = false, desc = "Compile & run C file" })
+--   local cmd = string.format("gcc %s -o %s && %s", file, output, output)
+--   vim.cmd('!clear')  
+--   vim.cmd('!' .. cmd)
+--   end, { noremap = true, silent = false, desc = "Compile & run C file" })
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -151,6 +172,8 @@ if not vim.loop.fs_stat(lazypath) then
       })
       end
     },
+
+
 
     -- New theme agine u can put any theme u want
     {
