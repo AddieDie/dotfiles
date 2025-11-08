@@ -1,34 +1,29 @@
 {
-  "window.zoomLevel": 2,
   "window.menuBarVisibility": "toggle",
-  
-  "editor.fontFamily": "Iosevka Nerd Font",
-  "editor.fontSize": 18,
-  "editor.tabSize": 2,
-  "editor.wordWrap": "on",
-  "editor.mouseWheelZoom": true,
 
+  "editor.fontSize": 20,
+  "editor.tabSize": 3,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": false,
+  "editor.suggestFontSize": 16,
+  "editor.suggestLineHeight": 20,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.scrollbar.verticalScrollbarSize": 0,
   "editor.scrollbar.horizontalScrollbarSize": 8,
-  "editor.renderLineHighlight": "none",
 
-  "explorer.compactFolders": false,
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.fontSize": 12,
 
-  "workbench.activityBar.location": "hidden",
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Solarized Dark",
   "workbench.layoutControl.enabled": false,
-  "workbench.colorTheme": "Default High Contrast Light",
+  "workbench.activityBar.location": "hidden",
+  "workbench.statusBar.visible": false,
   "workbench.startupEditor": "none",
-  
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": true,
-    "scminput": false,
-    "c": true
-  },
 
   "chat.commandCenter.enabled": false,
+  "files.autoSave": "afterDelay"
 }
