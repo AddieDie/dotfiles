@@ -7,6 +7,10 @@ ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+setopt autocd              
+setopt correct             
+setopt hist_ignore_dups    
+setopt share_history     
 
 source $ZSH_CUSTOM/aliases.zsh
 source $ZSH_CUSTOM/macos.zsh
